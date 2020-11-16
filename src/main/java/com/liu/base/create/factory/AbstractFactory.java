@@ -1,11 +1,14 @@
 package com.liu.base.create.factory;
 
+
+import com.liu.base.utils.Factory;
+
 public class AbstractFactory {
     public static void main(String[] args) {
         Farm f;
         try {
             // 获取农场(A或者B)
-            f = getFactory("com.liu.base.create.FarmA");
+            f = Factory.getBean("com.liu.base.create.FarmA");
             // 根据农场，获取对应的动物、植物
             Animal animal = f.newAnimal();
             Plant plant = f.newPlant();
@@ -15,12 +18,6 @@ public class AbstractFactory {
         }
     }
 
-    // 通过类名获取工厂实例，可以使用读取配置等方式，获取具体工厂类的类名
-    private static <T> T getFactory(String className) throws Exception {
-        Class<?> clazz = Class.forName(className);
-        T af = (T)clazz.newInstance();
-        return af;
-    }
 }
 
 // 抽象产品--动物

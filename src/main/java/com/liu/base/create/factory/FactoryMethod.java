@@ -8,19 +8,12 @@ public class FactoryMethod {
         try {
             Product a;
             Factory af;
-            af = getFactory("");
+            af = com.liu.base.utils.Factory.getBean("工厂的实例类的类名");
             a = af.newProduct();
             a.show();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    // 通过类名获取工厂实例，可以使用读取配置等方式，获取具体类名
-    private static Factory getFactory(String className) throws Exception {
-        Class<?> clazz = Class.forName(className);
-        Factory af = (Factory)clazz.newInstance();
-        return af;
     }
 
 }
