@@ -6,8 +6,11 @@ package com.liu.base.create.single;
 public class DoubleLock {
     // 静态属性--需要被静态方法访问
     // volatile：
-    //      instance在加锁实例化后，因为volatile会
-    //      及时刷新到主内存中，防止未及时刷新到主内存导致其他线程阻塞
+    //      此时synchronized保证了instance的可见性,instance是单线程有序性
+    //      volatile用于保证DoubleLock的有序性：（3先于2可能返回instanc=null）
+    //          1,对象分配内存
+    //          2,对象初始化
+    //          3,地址赋值给instance
     private static volatile DoubleLock instance;
     private DoubleLock() { }
 
